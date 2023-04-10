@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conditions</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			margin: 20px;
+			text-align: center;
+		}
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin: 20px;
+		}
+		.condition {
+			display: flex;
+			align-items: center;
+			margin: 10px;
+		}
+		.condition-text {
+			flex: 1;
+		}
+		.button {
+			margin-left: 10px;
+			padding: 5px 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #eee;
+			cursor: pointer;
+		}
+		.button.yes {
+			background-color: green;
+			color: white;
+		}
+		.button.no {
+			background-color: red;
+			color: white;
+		}
+		.result {
+			margin: 20px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<h1>Conditions</h1>
+	<div class="container">
+		<div class="condition">
+			<div class="condition-text">Condition 1</div>
+			<button class="button yes">YES</button>
+			<button class="button no">NO</button>
+		</div>
+		<div class="condition">
+			<div class="condition-text">Condition 2</div>
+			<button class="button yes">YES</button>
+			<button class="button no">NO</button>
+		</div>
+		<div class="condition">
+			<div class="condition-text">Condition 3</div>
+			<button class="button yes">YES</button>
+			<button class="button no">NO</button>
+		</div>
+	</div>
+	<div class="result">
+		Your platform should follow the legal rules related to: <span id="result-text"></span>
+	</div>
+
+	<script>
+		// On récupère les boutons et on leur ajoute un événement "click"
+		const buttons = document.querySelectorAll(".button");
+		buttons.forEach(button => {
+			button.addEventListener("click", () => {
+				// On récupère les valeurs des boutons
+				const values = Array.from(buttons).map(button => button.classList.contains("yes") ? "YES" : "NO");
+				// On calcule le résultat en fonction des valeurs des boutons
+				let result;
+				if (values[0] === "YES" && values[1] === "NO" && values[2] === "YES") {
+					result = "A";
+				} else if (values[0] === "NO" && values[1] === "NO" && values[2] === "NO") {
+					result = "B";
+				} else {
+					result = "C";
+				}
+				// On met à jour le texte du résultat dans la page
+				const resultText = document.querySelector("#result-text");
+				resultText.textContent = result;
+			});
+		});
+	</script>
+</body>
+</html>
